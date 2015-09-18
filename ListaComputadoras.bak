@@ -81,24 +81,21 @@ int ListaComputadoras::buscarCodMargesi(char cod[]){
 void ListaComputadoras::registrar(){
 	Computadora C;
 	int pos;
-	char nro[LIM];
-	char cod[LIM];
 
-	cout << "\n********* REGISTRAR COMPUTADORA *********" << endl;
 	do{
-		leerCadena("Nro Serie",nro,LIM);
-		pos = buscarNroSerie(nro);
+		leerCadena("Nro Serie",nroSerie,LIM);
+		pos = buscarNroSerie(C.nroSerie);
 		if(pos != -1)
 			cout << "Nro de serie ya existe.. Ingrese otro por favor!!" << endl;
 	}while(pos != -1);
 	do{
-		leerCadena("Codigo Margesi",cod,LIM);
-		pos = buscarCodMargesi(cod);
+		leerCadena("Codigo Margesi",codigoMargesi,LIM);
+		pos = buscarCodMargesi(C.codigoMargesi);
 		if(pos != -1)
 			cout << "Codigo Margesi ya existe.. Ingrese otro por favor!!" << endl;
 	}while(pos != -1);
 
-	C.leer(nro,cod);
+	C.leer();
 	insertar(C);
 	cout << "\nComputadora registrada" << endl;
 	getch();

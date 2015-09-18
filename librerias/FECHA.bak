@@ -6,7 +6,7 @@ class Fecha {
 
 	public:
 
-		Fecha(int, int, int); //Constructor con parametros con valor por defecto
+		Fecha(int wDia = 1, int wMes = 1, int wAnio = 1990); //Constructor con parametros con valor por defecto
 		int getDia();
 		void setDia(int wDia);
 		int getMes();
@@ -44,20 +44,20 @@ void Fecha::muestraExtensa(){
 	cout << dia << " de " << tmeses[mes-1] << " de " << anio;
 }
 
-int Fecha::esBisiesto(){
+int Fecha::esBisiesto(int anio){
 	if (anio % 4 == 0 && anio % 100 != 0 || anio % 400 == 0 )
 		return 0;
 
 	return 1;
 }
 
-int Fecha::fechaValida(){
+int Fecha::fechaValida(int dia, int mes, int anio){
 	int meses[13] = {0,31,29,31,30,31,30,31,31,30,31,30,31};
 
 	if( meses[mes] < dia)
 		return 0;
 
-	if(mes == 2 && dia == 29 && !esBisiesto())
+	if(mes == 2 && dia == 29 && !esBisiesto(anio))
 		return 0;
 
 	return 1;
