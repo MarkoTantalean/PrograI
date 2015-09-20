@@ -1,64 +1,72 @@
-class Fecha {
+#include <iostream.h>
+#include <conio.h>
+
+/*
+
+	esBisiesto();
+	fechaValida();
+	comparaFecha(); // 1 0 -1
+*/
+class Fecha
+{
 	private:
 		int dia;
 		int mes;
 		int anio;
 
+
 	public:
 
-		Fecha(int, int, int); //Constructor con parametros con valor por defecto
-		int getDia();
-		void setDia(int wDia);
-		int getMes();
-		void setMes(int wMes);
-		int getAnio();
-		void setAnio(int wAnio);
-		void leer();
-		void muestra();
-		void muestraExtensa();
-		int esBisiesto();
-		int fechaValida();
+		Fecha(int wDia = 1, int wMes = 1, int wAnio = 1990) //Constructor con parametros con valor por defecto
+		{
+			dia = wDia;
+			mes = wMes;
+			anio = wAnio;
+		}
+
+		int getDia(){
+			return dia;
+		}
+
+		void setDia(int wDia){
+			dia = wDia;
+		}
+
+		int getMes(){
+			return mes;
+		}
+
+		void setMes(int wMes){
+			mes = wMes;
+		}
+
+		int getAnio(){
+			return anio;
+		}
+
+		void setAnio(int wAnio){
+			anio = wAnio;
+		}
+
+		void muestra(){
+			cout << dia << "/" << mes << "/" << anio;
+		}
+
+		void muestraExtensa(){
+			char tmeses[12][20] = {"Enero","Febrero","Marzo","Abril",
+									"Mayo","Junio","Julio","Agosto",
+									"Setiembre","Octubre","Noviembre","Diciembre"};
+
+			cout << dia << " de " << tmeses[mes-1] << " de " << anio;
+		}
+
+		void leer(){
+			cout << "\nDia: ";
+			cin >> dia;
+			cout << "\nMes: ";
+			cin >> mes;
+			cout << "\nAnio: ";
+			cin >> anio;
+		}
+
 };
-
-Fecha::Fecha(int wDia = 1, int wMes = 1, int wAnio = 1990){
-	dia = wDia;
-	mes = wMes;
-	anio = wAnio;
-}
-
-void Fecha::leer(){
-	dia = leerEntero("Dia",1,31);
-	mes = leerEntero("Mes",1,12);
-	anio = leerEntero("Anho",1990,2050);
-}
-
-void Fecha::muestra(){
-	cout << dia << "/" << mes << "/" << anio;
-}
-
-void Fecha::muestraExtensa(){
-	char tmeses[12][20] = {"Enero","Febrero","Marzo","Abril",
-							"Mayo","Junio","Julio","Agosto",
-							"Setiembre","Octubre","Noviembre","Diciembre"};
-
-	cout << dia << " de " << tmeses[mes-1] << " de " << anio;
-}
-
-int Fecha::esBisiesto(){
-	if (anio % 4 == 0 && anio % 100 != 0 || anio % 400 == 0 )
-		return 0;
-
-	return 1;
-}
-
-int Fecha::fechaValida(){
-	int meses[13] = {0,31,29,31,30,31,30,31,31,30,31,30,31};
-
-	if( meses[mes] < dia)
-		return 0;
-
-	if(mes == 2 && dia == 29 && !esBisiesto())
-		return 0;
-
-	return 1;
-}
